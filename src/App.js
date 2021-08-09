@@ -1,11 +1,18 @@
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Spinner from './components/Spinner/Spinner';
+import MainRouter from "./MainRouter";
 
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <React.Suspense fallback={<Spinner />}>
+      <Router>
+        <MainRouter />
+      </Router>
+    </React.Suspense>
+    
   );
 }
 
