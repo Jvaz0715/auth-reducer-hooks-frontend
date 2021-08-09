@@ -12,11 +12,36 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function Auth() {
-    const classes =useStyles();
+function Auth(props) {
+    const classes = useStyles();
+    let isLoginRoute = props.match.path === "/login";
+    let buttonTitle = isLoginRoute ? "Login" : "Sign Up";
     return (
-        <div> </div>
-    )
+        <Grid container spacing={0} justifyContent="center">
+            <form className={classes.root}>
+                <Grid item m={6}>
+                    <TextField fullWidth label="Email" name="email"/>
+                </Grid>
+
+                {
+                    !isLoginRoute && (
+                        <Grid item m={6}>
+                            <TextField fullWidth label="Username" name="username"/>
+                        </Grid>
+                    )
+                }
+
+                <Grid item m={6}>
+                    <TextField fullWidth label="Password" name="password"/>
+                </Grid>
+
+                <Grid style={{textAlign: "center"}}>
+                    <Button type="submit" variant ="contained" color="primary" style={{ marginTop: 10 }}>{buttonTitle}</Button>
+                </Grid>
+
+            </form>
+        </Grid>
+    );
 }
 
-export default Auth
+export default Auth;
